@@ -28,6 +28,9 @@ steps:
       unzip -q /tmp/gradle.zip -d /tmp
       echo "/tmp/gradle-8.9/bin" >> "$GITHUB_PATH"
 
+  - name: Extract Android project
+    run: unzip -q INFINITY_AI_Android_Starter.zip -d .
+
   - name: Build APK
     run: gradle --no-daemon -p infinity_ai_android assembleDebug
 
@@ -36,3 +39,4 @@ steps:
     with:
       name: INFINITY-AI-APK
       path: infinity_ai_android/app/build/outputs/apk/debug/app-debug.apk
+      if-no-files-found: error
